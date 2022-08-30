@@ -103,7 +103,7 @@ export class MvPagination extends LitElement {
         width: 24px;
         display: inline-block;
         position: relative;
-        top: -6px;
+        line-height: 24px;
       }
 
       .current-page {
