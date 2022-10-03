@@ -14,7 +14,7 @@ export class MvPagination extends LitElement {
       // valid type values are: "button", "text", or "none", default "button"
       type: { type: String, attribute: true, reflect: true },
 
-      //  valid theme values are: "light", "dark"
+      //  valid theme values are: "light", "dark", "lightV2"
       //    default: "light"
       theme: { type: String, attribute: true },
     };
@@ -27,15 +27,21 @@ export class MvPagination extends LitElement {
         font-size: var(--font-size-m, 10pt);
         --light-background: var(--mv-pagination-light-background, #eaebf0);
         --dark-background: var(--mv-pagination-dark-background, #3999c1);
+        --lightV2-background: var(--mv-pagination-lightV2-background, transparent);
         --selected-light-background: var(
           --mv-pagination-selected-light-background,
           #008fc3
         );
+        --selected-lightV2-background: var(
+          --mv-pagination-selected-lightV2-background,
+          transparent
+        )
         --selected-dark-background: var(
           --mv-pagination-selected-dark-background,
           #23404c
         );
         --light-color: var(--mv-pagination-light-color, #80828c);
+        --lightV2-color: var(--mv-pagination-lightV2-color, #80828c);
         --dark-color: var(--mv-pagination-dark-color, #ffffff);
         --hover-light-background: var(
           --mv-pagination-hover-light-background,
@@ -45,32 +51,29 @@ export class MvPagination extends LitElement {
           --mv-pagination-hover-dark-background,
           #007fad
         );
+        --hover-lightV2-background: transparent;
       }
-
       .mv-pagination-container {
         margin-top: var(--pagination-group-top-margin, 10px);
         display: flex;
         flex-direction: row;
+        height: var(--mv-pagination-container-height);
       }
-
       .mv-pagination-container.left {
         justify-content: flex-start;
       }
-
       .mv-pagination-container.center {
         justify-content: center;
       }
-
       .mv-pagination-container.right {
         justify-content: flex-end;
       }
-
       .mv-pagination-group {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        width: var(--mv-pagination-width);
+        justify-content: var(--mv-pagination-justify-content);
       }
-
       .button-group {
         display: flex;
         justify-content: space-evenly;
@@ -80,22 +83,18 @@ export class MvPagination extends LitElement {
         margin: 0px 15px;
         --mv-button-margin: 0 5px;
       }
-
       .button-group mv-button:first-child,
       .button-group mv-button:nth-child(2) {
         --mv-button-margin: 0 5px 0 0;
       }
-
       .button-group mv-button:last-child,
       .button-group mv-button:nth-last-child(2) {
         --mv-button-margin: 0 0 0 5px;
       }
-
       .page-buttons {
         font-size: var(--font-size-m, 16px);
         font-weight: var(--pagination-button-font-weight, normal);
       }
-
       .page-buttons.large {
         font-size: var(--font-size-xxl, 24px);
         font-weight: var(--pagination-button-font-weight-large, bold);
@@ -103,27 +102,63 @@ export class MvPagination extends LitElement {
         width: 24px;
         display: inline-block;
         position: relative;
-        line-height: 24px;
+        top: -6px;
       }
-
       .current-page {
         color: var(--mv-pagination-current-page-color);
+        width: var(--mv-pagination-width);
+        height: var(--mv-pagination-height);
+        display: var(--mv-pagination-display);
+        align-items: var(--mv-pagination-align-items);
+        justify-content: var(--mv-pagination-span-justify-content);
       }
-
       .light {
         --mv-button-circle-background: var(--light-background);
         --mv-button-light-background: var(--selected-light-background);
         --background-color: var(--light-background);
         --mv-button-circle-hover-background: var(--hover-light-background);
         --mv-button-circle-color: var(--light-color);
+        --mv-paginatin-width: auto;
+        --mv-pagination-justify-content: space-evenly;
+        --mv-pagination-current-page-color: black;
       }
-
       .dark {
         --mv-button-circle-background: var(--dark-background);
         --mv-button-light-background: var(--selected-dark-background);
         --background-color: var(--dark-background);
         --mv-button-circle-hover-background: var(--hover-dark-background);
         --mv-button-circle-color: var(--dark-color);
+        --mv-paginatin-width: auto;
+        --mv-pagination-justify-content: space-evenly;
+        --mv-pagination-current-page-color: white;
+      }
+      .lightV2 {
+        --mv-pagination-width: var(--mv-pagination-lightV2-width, 100%);
+        --mv-pagination-height: var(--mv-pagination-lightV2-height, 100%);
+        --mv-pagination-display: var(--mv-pagination-lightV2-display, flex);
+        --mv-pagination-align-items: var(--mv-pagination-lightV2-align-items, center);
+        --mv-pagination-span-justify-content: var(--mv-pagination-lightV2-justify-content, center);
+        --mv-button-circle-background: var(--lightV2-background);
+        --mv-button-light-background: var(--selected-lightV2-background);
+        --background-color: var(--lightV2-background);
+        --mv-button-circle-hover-background: var(--hover-lightV2-background);
+        --mv-button-circle-color: var(--lightV2-color);
+        --mv-button-custom-color: transparent;
+        --mv-button-box-shadow: none;
+        --mv-pagination-width: 100%;
+        --mv-pagination-justify-content: space-between;
+        --mv-pagination-current-page-color: #328cc0;
+        --mv-pagination-container-height: var(--mv-pagination-container-lightV2-height, 39px);
+        --pagination-group-top-margin: var(--mv-pagination-lightV2-group-top-margin, 0px);
+        --mv-button-hover-custom-color: #328cc0;
+      }
+
+      .current-page.lightV2 {
+        margin: 0 20px;
+        padding: 0 10px;
+        background-color: #FDCD36;
+        border-radius: 18px;
+        font-weight: bold;
       }
     `;
   }
@@ -169,7 +204,6 @@ export class MvPagination extends LitElement {
                   <span class="page-buttons large">&laquo;</span>
                 </slot>
               </mv-button>
-
               <mv-button
                 @button-clicked="${this.gotoPage(this.page - 1)}"
                 ?disabled="${isFirstPage}"
@@ -179,10 +213,9 @@ export class MvPagination extends LitElement {
                   <span class="page-buttons large">&lsaquo;</span>
                 </slot>
               </mv-button>
-
               ${this.type === "text"
                 ? html`
-                    <span class="current-page">
+                    <span class="current-page ${this.theme}">
                       ${`Page ${this.page} of ${this.pages}`}
                     </span>
                   `
@@ -198,7 +231,6 @@ export class MvPagination extends LitElement {
                       >
                         <span class="page-buttons">1</span>
                       </mv-button>
-
                       ${this.showLeftSeparator
                         ? html` <span class="page-buttons">...</span> `
                         : html``}
@@ -217,7 +249,6 @@ export class MvPagination extends LitElement {
                       ${this.showRightSeparator
                         ? html` <span class="page-buttons">...</span> `
                         : html``}
-
                       <mv-button
                         @button-clicked="${this.gotoPage(this.pages)}"
                         ?disabled="${isLastPage}"
@@ -238,7 +269,6 @@ export class MvPagination extends LitElement {
                   <span class="page-buttons large">&rsaquo;</span>
                 </slot>
               </mv-button>
-
               <mv-button
                 @button-clicked="${this.gotoPage(this.pages)}"
                 ?disabled="${isLastPage}"
