@@ -1,6 +1,6 @@
 {
   "name": "@meveo-org/mv-pagination",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MvPagination is a Meveo pagination component (based on lit-element) that provides pagination buttons.",
   "main": "mv-pagination.js",
   "scripts": {
