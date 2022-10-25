@@ -46,6 +46,7 @@ export class MvPagination extends LitElement {
           #007fad
         );
         --pagination-width: var(--mv-pagination-width);
+        --pagination-min-width: var(--mv-pagination-min-width);
         --pagination-height: var(--mv-pagination-height);
         --pagination-display: var(--mv-pagination-display);
         --pagination-align-items: var(--mv-pagination-align-items);
@@ -112,6 +113,7 @@ export class MvPagination extends LitElement {
       .current-page {
         color: var(--mv-pagination-current-page-color);
         width: var(--pagination-width);
+        min-width: var(--pagination-min-width);
         height: var(--pagination-height);
         display: var(--pagination-display);
         align-items: var(--pagination-align-items);
